@@ -1,0 +1,8 @@
+imageio-ffmpeg==0.6.0
+faster-whisper==1.2.1
+pywebview==6.0
+Pillow==11.3.0
+
+scenedetect[opencv]==0.6.7.1
+
+selenium>=4.20,<5

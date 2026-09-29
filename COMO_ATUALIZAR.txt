@@ -1,0 +1,26 @@
+MICRO ATUALIZACAO DE RECORTE 0.7.2 — para MontaVideo 0.7 ou 0.7.1
+
+1. Aguarde o CMD de recorte atual terminar e feche o MontaVideo.
+2. Copie cut_console.py e external_cuts.py desta pasta para a pasta do MontaVideo, junto de app.py. Aceite substituir apenas esses dois arquivos.
+3. Abra o MontaVideo pelo BAT habitual.
+4. Use Abrir recorte no CMD. Depois da conclusao, clique Atualizar cenas.
+
+Nao precisa reinstalar bibliotecas, cadastrar chaves, mover videos ou apagar cortes existentes. O numero no cabecalho da interface permanece igual: esta atualizacao altera somente o recorte.
+
+ALTERACOES
+- Usa o scenedetect encontrado no PATH do Windows, como o BAT original. Se ausente, usa o Python do MontaVideo.
+- Preserva o FFmpeg do PATH. So usa o FFmpeg empacotado se nenhum estiver disponivel. Antes o empacotado tinha prioridade.
+- Executa na pasta do video, como seu BAT.
+- Mantem exatamente detect-content split-video, sem mudar sensibilidade, qualidade ou pular quadros.
+- Os arquivos permanecem na pasta onde sao gravados, sem esperar o fim para mover todos para outra pasta.
+- O CMD mostra o caminho exato Cenas_Separadas_MontaVideo\video_identificador\Cenas_identificador e o comando executado. Abra essa subpasta para acompanhar os MP4 durante Splitting video.
+- O CMD fecha automaticamente no sucesso e permanece aberto se houver erro.
+- Cortes concluidos das versoes anteriores continuam reutilizados. Uma tentativa incompleta fica separada e nao entra na montagem.
+
+SOBRE A PORCENTAGEM
+O comando original detect-content split-video primeiro analisa o video e depois grava as cenas. Detecting scenes e Splitting video sao fases diferentes. Chegar a 100% da analise nao significa que terminou de gravar. Esta atualizacao nao transforma o detector em um processo simultaneo nem garante aceleracao da analise.
+
+Se o BAT antigo for mais rapido no MESMO video, compare o Detector, o FFmpeg e o comando mostrados no CMD. Envie o log com a fase e frames/s para localizar a diferenca. O hardware e o codec do arquivo influenciam no tempo; usar um BAT nao muda por si so a velocidade do detector.
+
+VALIDACAO
+Teste de integracao com video sintetico: duas cenas gravadas e reutilizadas na segunda execucao. Teste controlado confirmou preservacao do PATH/FFmpeg, diretorio de trabalho, ausencia de movimentacao tardia e cache. Windows real e seus videos longos nao foram medidos aqui.
